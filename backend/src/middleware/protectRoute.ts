@@ -22,7 +22,7 @@ const protectRoute = async( req: Request, res: Response, next: NextFunction): Pr
         const token = req.cookies.jwt;
 
         if(!token){
-            res.status(401).json({ message: "Unauthorized" })
+            res.status(401).json({ error: "Unauthorized" })
             return
         }
 
