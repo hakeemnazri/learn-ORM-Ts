@@ -22,7 +22,7 @@ const SignUp = () => {
 
 	const handleSubmitForm = (e: React.FormEvent) => {
 		e.preventDefault()
-
+		signup(input)
 	}
 
 	return (
