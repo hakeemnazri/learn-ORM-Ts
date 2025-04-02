@@ -1,26 +1,21 @@
 import { useState } from "react"
-import { useAuthContext } from "../context/AuthContext"
 import toast from "react-hot-toast"
+import useConversation from "../zustand/useConversation"
 
-type InputType = {
-    username: string,
-    password: string
-}
-
-const useLogin = () => {
+const useSendMessage = () => {
     const [loading, setLoading] = useState(false)
-    const { setAuthUser } = useAuthContext()
+    const { selectedConversation, messages, setMessages } = useConversation()
 
-    const login = async(inputs: InputType) => {
+    const sendMessage = async(message :string) => {
         try {
-
+            if(!selectedConversation) return
             setLoading(true)
-            const res = await fetch(`/api/auth/login`, {
+            const res = await fetch(`/api/messages/send/${selectedConversation.id}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(inputs)
+                body: JSON.stringify(message)
             })
 
             const data = await res.json()
@@ -29,7 +24,8 @@ const useLogin = () => {
                 throw new Error(data.error)
             }
 
-            setAuthUser(data)
+            setMessages([...messages, data])
+
 
         } catch (error:any) {
             console.log(error.message)
@@ -38,7 +34,7 @@ const useLogin = () => {
             setLoading(false)
         }
     }
-    return {login, loading}
+    return {sendMessage, loading}
  }
 
- export default useLogin;
+ export default useSendMessage;
