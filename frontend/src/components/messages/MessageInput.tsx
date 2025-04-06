@@ -10,6 +10,7 @@ const MessageInput = () => {
 		e.preventDefault()
 		if(message.trim() === '') return
 		await sendMessage(message)
+		console.log(message)
 		setMessage("")
 	}
 	return (
