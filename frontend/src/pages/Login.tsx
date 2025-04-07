@@ -23,11 +23,17 @@ type inputs = {
 
 	return (
 		<div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
-			<div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
+			<div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 flex flex-col gap-4'>
 				<h1 className='text-3xl font-semibold text-center text-white'>
 					Login
 					<span className='text-blue-500'> ChatApp</span>
 				</h1>
+
+				<div className="flex flex-col gap-2 p-2 border-2 rounded-lg">
+					<p className="text-center border-b-1 text-2xl">Demo</p>
+					<p>Username: user123</p>
+					<p>Password: 123456</p>
+				</div>
 
 				<form onSubmit={handleLogin}>
 					<div>
